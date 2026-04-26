@@ -7,29 +7,27 @@
 }
 
 :root {
-  --bg-color: #0a0a0a;
+  --bg-primary-color: #292d2c;
+  --bg-secondary-color: #3a3d42;
   --text-primary: #ededed; /* 主文字颜色 */
   --text-secondary: #9ea3a2; /* 辅助文字颜色 */
-  --color-accent: #67ffeb; /* 强调色 电光蓝 */
+  --color-accent: #7cf67e; /* 强调色 */
 }
 
 html,
 body {
-  background-color: var(--bg-color);
+  background-color: var(--bg-primary-color);
   color: var(--text-color);
 }
 
 body {
   margin: 0;
   padding: 0;
-  background: radial-gradient(125% 125% at 50% 90%, #000000 40%, #072607 100%);
   min-height: 100vh;
 }
 
 #app {
-  /* min-height: 100vh; */
   padding: 0 16px;
-  /* background-color: var(--bg-color); */
   background: transparent;
   color: var(--text-primary);
 }
@@ -54,4 +52,14 @@ button {
 
   background: transparent;
   color: var(--text-primary);
+}
+
+input {
+  border: none;
+  outline: none;
+  box-shadow: none;
+  background: transparent;
+}
+input:focus {
+  outline: none;
 }

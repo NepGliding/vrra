@@ -36,6 +36,31 @@ import {
 </script>
 
 <style scoped>
+.res-nav {
+  height: 46px;
+  padding: 8px 16px;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+.res-nav button {
+  /* width: 54px; */
+  height: 32px;
+  text-align: center;
+  color: var(--text-primary);
+  background-color: var(--bg-secondary-color);
+
+  font-size: 12px;
+  padding: 0 12px; /* 左右内边距使文字不贴边 */
+
+  /* 圆角 */
+  border-radius: 12px;
+
+  /* 辅助效果：边框、过渡 */
+  outline: none;
+  transition: all 0.3s ease;
+}
+
 .text {
   background-color: rgb(231, 59, 37);
   width: 200px;
@@ -51,19 +76,5 @@ import {
   position: fixed;
   inset: 0;
   background-color: rgba(0, 0, 0, 0.5);
-}
-
-.res-nav {
-  height: 46px;
-  padding: 8px 16px;
-  display: flex;
-  width: 100%;
-  margin: 0;
-}
-.res-nav button {
-  flex: 1; /* 所有按钮等宽拉伸 */
-  text-align: center; /* 文字水平居中 */
-  margin: 0;
-  color: var(--text-secondary);
 }
 </style>
