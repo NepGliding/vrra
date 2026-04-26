@@ -1,5 +1,87 @@
-<template></template>
+<template>
+  <div class="main">
+    <button>
+      <svg
+        width="18"
+        height="18"
+        viewBox="0 0 48 48"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M42 19H5.99998"
+          stroke="#ededed"
+          stroke-width="4"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M30 7L42 19"
+          stroke="#ededed"
+          stroke-width="4"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M6.79897 29H42.799"
+          stroke="#ededed"
+          stroke-width="4"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M6.79895 29L18.799 41"
+          stroke="#ededed"
+          stroke-width="4"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+      文章页
+    </button>
+    <button class="seacher">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        aria-hidden="true"
+        role="img"
+        style=""
+        width="1em"
+        height="1em"
+        viewBox="0 0 24 24"
+        class="iconify iconify--lucide"
+      >
+        <g
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+        >
+          <path d="m21 21l-4.34-4.34"></path>
+          <circle cx="11" cy="11" r="8"></circle>
+        </g>
+      </svg>
+    </button>
+  </div>
+</template>
 
 <script setup></script>
 
-<style scoped></style>
+<style scoped>
+.Separator {
+  background-color: aqua;
+  height: 1px;
+  width: 100%;
+}
+.main {
+  height: 64px;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgb(58, 58, 58);
+}
+.seacher {
+  width: 40px;
+}
+</style>

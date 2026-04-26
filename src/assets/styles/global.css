@@ -6,10 +6,52 @@
   box-sizing: border-box;
 }
 
+:root {
+  --bg-color: #0a0a0a;
+  --text-primary: #ededed; /* 主文字颜色 */
+  --text-secondary: #9ea3a2; /* 辅助文字颜色 */
+  --color-accent: #67ffeb; /* 强调色 电光蓝 */
+}
+
 html,
-body,
-#app {
-  min-height: 100vh;
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+body {
   margin: 0;
   padding: 0;
+  background: radial-gradient(125% 125% at 50% 90%, #000000 40%, #072607 100%);
+  min-height: 100vh;
+}
+
+#app {
+  /* min-height: 100vh; */
+  padding: 0 16px;
+  /* background-color: var(--bg-color); */
+  background: transparent;
+  color: var(--text-primary);
+}
+
+button {
+  /* 移除默认外观 */
+  -webkit-appearance: none; /* Chrome/Safari */
+  -moz-appearance: none; /* Firefox */
+  appearance: none;
+
+  /* 去掉边框和背景 */
+  border: none;
+  outline: none;
+  background: none;
+
+  /* 去掉内外边距并继承字体 */
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+
+  background: transparent;
+  color: var(--text-primary);
 }
