@@ -7,11 +7,11 @@
 }
 
 :root {
-  --bg-primary-color: #292929;
+  --bg-primary-color: rgb(14, 14, 14);
   --bg-secondary-color: #3a3d42;
   --text-primary: #ffffff; /* 主文字颜色 */
   --text-secondary: #9ea3a2; /* 辅助文字颜色 */
-  --color-accent: #6dfdae; /* 强调色 */
+  --color-accent: #60fca6; /* 强调色 */
 }
 
 html,

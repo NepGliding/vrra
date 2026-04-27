@@ -1,5 +1,4 @@
 <template>
-  <search v-if="isDesktop" class="search" />
   <nav class="res-nav">
     <button>硬件</button>
     <button>软件</button>
@@ -25,7 +24,6 @@
 <script setup>
 import { ref } from 'vue'
 import { useBreakpoints } from '@vueuse/core'
-import Search from '@/components/Search.vue'
 import {
   DialogClose,
   DialogContent,

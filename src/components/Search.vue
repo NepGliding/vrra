@@ -1,6 +1,7 @@
 <template>
-  <div class="search-box">
-    <span class="search-icon">
+  <!-- From Uiverse.io by boryanakrasteva -->
+  <div class="input-wrapper">
+    <button class="icon" @click="focusInput">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -23,99 +24,85 @@
           <circle cx="11" cy="11" r="8"></circle>
         </g>
       </svg>
-    </span>
-    <input
-      ref="inputRef"
-      type="text"
-      v-model="inputValue"
-      placeholder="请输入关键词"
-      class="search-input"
-    />
-
-    <span v-show="inputValue.length > 0" class="clear-btn" @click="clearInput"> × </span>
+    </button>
+    <input ref="inputRef" placeholder="search.." class="input" name="text" type="text" />
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 
-// 只需要逻辑：输入框的值、清除行为、获取焦点
-const inputValue = ref('')
 const inputRef = ref(null)
 
-const clearInput = () => {
-  inputValue.value = ''
+const focusInput = () => {
   inputRef.value?.focus()
 }
 </script>
 
 <style scoped>
-.search-box {
-  position: relative;
-  display: inline-block;
-}
-
-.search-input {
-  /* 颜色：文本颜色 + 背景色 */
-  color: var(--text-primary);
-  background-color: var(--bg-secondary-color);
-
-  /* 大小：宽度、高度、字体大小、内边距 */
-  width: 280px;
-  height: 38px;
-  font-size: 14px;
-  padding: 0 36px; /* 左右内边距使文字不贴边 */
-
-  /* 圆角 */
-  border-radius: 22px;
-
-  /* 辅助效果：边框、过渡 */
-  outline: none;
-  transition: all 0.3s ease;
-}
-
-/* 可选：聚焦效果 */
-.search-input:focus {
-  border-color: var(--color-accent);
-  box-shadow: 0 0 0 1px var(--color-accent);
-}
-.search-input::placeholder {
-  color: var(--text-secondary);
-  font-size: 12px;
-}
-
-.search-icon {
-  position: absolute;
-  left: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 16px;
-  color: #999;
-  pointer-events: none;
-}
-
-.clear-btn {
-  position: absolute;
-  right: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 18px;
-  height: 18px;
-  background: #ddd;
-  border-radius: 50%;
+/* From Uiverse.io by boryanakrasteva */
+.input-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
-  font-weight: bold;
-  color: #666;
-  cursor: pointer;
-  transition: background 0.2s;
-  user-select: none;
+  gap: 15px;
+  position: absolute;
+  right: 58px;
 }
 
-.clear-btn:hover {
-  background: #bbb;
-  color: #333;
+.input {
+  border-style: none;
+  height: 42px;
+  width: 42px;
+  padding: 10px;
+  outline: none;
+  transition: 0.5s ease-in-out;
+  background-color: #ffffff00;
+  padding-right: 40px;
+  color: #fff;
+}
+
+.input::placeholder,
+.input {
+  font-family:
+    'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 17px;
+}
+
+.input::placeholder {
+  color: #8f8f8f;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 0px;
+  cursor: pointer;
+  width: 42px;
+  height: 42px;
+  outline: none;
+  border-style: none;
+  border-radius: 50%;
+  pointer-events: painted;
+  background-color: transparent;
+  transition: 0.2s linear;
+}
+
+.icon:focus ~ .input,
+.input:focus {
+  box-shadow: none;
+  width: 220px;
+  border-radius: 0px;
+  background-color: transparent;
+  border-bottom: 3px solid #fcfcfc;
+  transition: all 500ms cubic-bezier(0, 0.11, 0.35, 2);
+}
+@media (width>=768px) {
+  /* From Uiverse.io by boryanakrasteva */
+  .input-wrapper {
+    right: 68px;
+  }
 }
 </style>
