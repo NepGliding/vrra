@@ -1,150 +1,93 @@
 <template>
   <div class="main">
-    <div class="search-box">
-      <span class="search-icon">
+    <div class="head">
+      <button class="switch">
         <svg
+          width="16"
+          height="16"
+          viewBox="0 0 48 48"
+          fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          aria-hidden="true"
-          role="img"
-          style=""
-          width="1em"
-          height="1em"
-          viewBox="0 0 24 24"
-          class="iconify iconify--lucide"
         >
-          <g
-            fill="none"
-            stroke="currentColor"
+          <path
+            d="M31 36L19 24L31 12"
+            stroke="#ededed"
+            stroke-width="4"
             stroke-linecap="round"
             stroke-linejoin="round"
-            stroke-width="2"
-          >
-            <path d="m21 21l-4.34-4.34"></path>
-            <circle cx="11" cy="11" r="8"></circle>
-          </g>
+          />
         </svg>
-      </span>
-      <input
-        ref="inputRef"
-        type="text"
-        v-model="inputValue"
-        placeholder="请输入关键词"
-        class="search-input"
-      />
-
-      <span v-show="inputValue.length > 0" class="clear-btn" @click="clearInput"> × </span>
+      </button>
+      <span class="title">资源页</span>
+      <button class="switch">
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 48 48"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M7.94971 11.9497H39.9497"
+            stroke="#ededed"
+            stroke-width="4"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M7.94971 23.9497H39.9497"
+            stroke="#ededed"
+            stroke-width="4"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M7.94971 35.9497H39.9497"
+            stroke="#ededed"
+            stroke-width="4"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </button>
     </div>
-    <button class="switch">切换到文章页</button>
+    <search v-if="!isDesktop" />
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import { useBreakpoints } from '@vueuse/core'
+import Search from './Search.vue'
 
-// 只需要逻辑：输入框的值、清除行为、获取焦点
-const inputValue = ref('')
-const inputRef = ref(null)
-
-const clearInput = () => {
-  inputValue.value = ''
-  inputRef.value?.focus()
-}
+// ---------- 响应式断点 ----------
+const breakpoints = { mobile: 0, tablet: 768, desktop: 1024 }
+const screens = useBreakpoints(breakpoints)
+const isMobile = screens.smaller('tablet')
+const isTablet = screens.between('mobile', 'desktop')
+const isDesktop = screens.greaterOrEqual('desktop')
 </script>
 
 <style scoped>
 .main {
-  height: 64px;
   padding: 12px 16px;
   border-bottom: 1px solid rgb(58, 58, 58);
+}
+.head {
+  width: 100%;
   display: flex;
-  align-items: center; /* 垂直居中（可选） */
-  gap: 8px; /* 输入框与按钮的间距 */
+  justify-content: space-between;
 }
-.search-box {
-  position: relative;
-  display: inline-block;
-  /* 默认宽度，可通过外部覆盖修改 */
-  /* width: 300px; */
-}
-
-.search-input {
-  /* 颜色：文本颜色 + 背景色 */
-  color: var(--text-primary);
-  background-color: var(--bg-secondary-color);
-
-  /* 大小：宽度、高度、字体大小、内边距 */
-  width: 240px;
-  height: 42px;
-  font-size: 14px;
-  padding: 0 36px; /* 左右内边距使文字不贴边 */
-
-  /* 圆角 */
-  border-radius: 22px;
-
-  /* 辅助效果：边框、过渡 */
-  outline: none;
-  transition: all 0.3s ease;
-}
-
-/* 可选：聚焦效果 */
-.search-input:focus {
-  border-color: var(--color-accent);
-  box-shadow: 0 0 0 1px var(--color-accent);
-}
-.search-input::placeholder {
-  color: var(--text-secondary);
-  font-size: 12px;
-}
-
-.search-icon {
-  position: absolute;
-  left: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 16px;
-  color: #999;
-  pointer-events: none;
-}
-
-.clear-btn {
-  position: absolute;
-  right: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 20px;
-  height: 20px;
-  background: #ddd;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  font-weight: bold;
-  color: #666;
-  cursor: pointer;
-  transition: background 0.2s;
-  user-select: none;
-}
-
-.clear-btn:hover {
-  background: #bbb;
-  color: #333;
-}
-
 .switch {
   height: 42px;
-  width: 100px;
+  width: 42px;
   color: black;
   font-size: 12px;
+  /* line-height: 42px; */
   font-weight: bold;
-  background-color: var(--color-accent);
-  border-radius: 22px;
+  /* background-color: var(--color-accent); */
 }
-
-@media (width<=768px) {
-  .search-input {
-    width: 182px;
-  }
+.title {
+  line-height: 42px;
 }
 </style>

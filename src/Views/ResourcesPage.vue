@@ -1,4 +1,5 @@
 <template>
+  <search v-if="isDesktop" class="search" />
   <nav class="res-nav">
     <button>硬件</button>
     <button>软件</button>
@@ -23,6 +24,8 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useBreakpoints } from '@vueuse/core'
+import Search from '@/components/Search.vue'
 import {
   DialogClose,
   DialogContent,
@@ -33,6 +36,13 @@ import {
   DialogTitle,
   DialogTrigger,
 } from 'reka-ui'
+
+// ---------- 响应式断点 ----------
+const breakpoints = { mobile: 0, tablet: 768, desktop: 1024 }
+const screens = useBreakpoints(breakpoints)
+const isMobile = screens.smaller('tablet')
+const isTablet = screens.between('mobile', 'desktop')
+const isDesktop = screens.greaterOrEqual('desktop')
 </script>
 
 <style scoped>
@@ -41,17 +51,17 @@ import {
   padding: 8px 16px;
   width: 100%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
+  gap: 8px;
 }
 .res-nav button {
-  /* width: 54px; */
+  width: 62px;
   height: 32px;
   text-align: center;
   color: var(--text-primary);
   background-color: var(--bg-secondary-color);
 
   font-size: 12px;
-  padding: 0 12px; /* 左右内边距使文字不贴边 */
 
   /* 圆角 */
   border-radius: 12px;
@@ -77,4 +87,10 @@ import {
   inset: 0;
   background-color: rgba(0, 0, 0, 0.5);
 }
+
+/* @media (width<=768px) {
+  .search{
+    width: 182px;
+  }
+} */
 </style>
