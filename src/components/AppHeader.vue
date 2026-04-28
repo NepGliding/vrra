@@ -35,7 +35,7 @@ const isDesktop = screens.greaterOrEqual('desktop')
 }
 .search {
   position: relative;
-  left: calc(72px - 12px);
+  left: calc(var(--nav-width) - 12px);
 }
 /* @media (width>=768px) {
 

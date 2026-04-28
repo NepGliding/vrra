@@ -59,23 +59,21 @@ const clearInput = () => {
 
 .search-input {
   color: var(--text-primary);
-  background-color: var(--bg-surface);
   width: 100%;
   height: 36px;
   font-size: 14px;
   padding: 0 36px;
   border-radius: 6px;
   outline: none;
-  transition: all 0.3s ease;
+  transition: background-size 0.3s ease;
   display: block;
-  /* 聚焦后底部边框默认 */
-  background-color: var(--bg-surface); /* 你原来的背景色，保留！ */
 
-  /* 👇 新加：用多背景写法，不覆盖背景色 */
+  background-color: var(--bg-surface);
+  /* 聚焦后底部边框默认 */
   background-image: linear-gradient(var(--accent), var(--accent));
   background-repeat: no-repeat;
   background-position: center bottom;
-  background-size: 0 2px; /* 默认隐藏 */
+  background-size: 0 2px;
 }
 
 .search-input:focus {
@@ -92,7 +90,7 @@ const clearInput = () => {
 .search-icon {
   position: absolute;
   left: 15px;
-  top: 50%;
+  top: 55%;
   transform: translateY(-50%);
   font-size: 16px;
   color: #999;
