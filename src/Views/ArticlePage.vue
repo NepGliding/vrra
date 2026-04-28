@@ -1,6 +1,4 @@
-<template>
-  <h1>文章...</h1>
-</template>
+<template></template>
 
 <script setup></script>
 

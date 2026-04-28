@@ -1,7 +1,6 @@
 <template>
-  <!-- From Uiverse.io by boryanakrasteva -->
-  <div class="input-wrapper">
-    <button class="icon" @click="focusInput">
+  <div class="search-box">
+    <span class="search-icon">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -24,85 +23,104 @@
           <circle cx="11" cy="11" r="8"></circle>
         </g>
       </svg>
-    </button>
-    <input ref="inputRef" placeholder="search.." class="input" name="text" type="text" />
+    </span>
+    <input
+      ref="inputRef"
+      type="text"
+      v-model="inputValue"
+      placeholder="请输入关键词"
+      class="search-input"
+    />
+
+    <span v-show="inputValue.length > 0" class="clear-btn" @click="clearInput"> × </span>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 
+// 只需要逻辑：输入框的值、清除行为、获取焦点
+const inputValue = ref('')
 const inputRef = ref(null)
 
-const focusInput = () => {
+const clearInput = () => {
+  inputValue.value = ''
   inputRef.value?.focus()
 }
 </script>
 
 <style scoped>
-/* From Uiverse.io by boryanakrasteva */
-.input-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-  position: absolute;
-  right: 58px;
+.search-box {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  width: 200px;
 }
 
-.input {
-  border-style: none;
-  height: 42px;
-  width: 42px;
-  padding: 10px;
+.search-input {
+  color: var(--text-primary);
+  background-color: var(--bg-surface);
+  width: 100%;
+  height: 36px;
+  font-size: 14px;
+  padding: 0 36px;
+  border-radius: 6px;
   outline: none;
-  transition: 0.5s ease-in-out;
-  background-color: #ffffff00;
-  padding-right: 40px;
-  color: #fff;
+  transition: all 0.3s ease;
+  display: block;
+  /* 聚焦后底部边框默认 */
+  background-color: var(--bg-surface); /* 你原来的背景色，保留！ */
+
+  /* 👇 新加：用多背景写法，不覆盖背景色 */
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: 0 2px; /* 默认隐藏 */
 }
 
-.input::placeholder,
-.input {
-  font-family:
-    'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  font-size: 17px;
-}
-
-.input::placeholder {
-  color: #8f8f8f;
-}
-
-.icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  right: 0px;
-  cursor: pointer;
-  width: 42px;
-  height: 42px;
+.search-input:focus {
+  /* 聚焦后底部边框 */
   outline: none;
-  border-style: none;
+  border-color: #ccc;
+  background-size: 80% 2px;
+}
+.search-input::placeholder {
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #999;
+  pointer-events: none;
+}
+
+.clear-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  background: #ddd;
   border-radius: 50%;
-  pointer-events: painted;
-  background-color: transparent;
-  transition: 0.2s linear;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: bold;
+  color: #666;
+  cursor: pointer;
+  transition: background 0.2s;
+  user-select: none;
 }
 
-.icon:focus ~ .input,
-.input:focus {
-  box-shadow: none;
-  width: 220px;
-  border-radius: 0px;
-  background-color: transparent;
-  border-bottom: 3px solid #fcfcfc;
-  transition: all 500ms cubic-bezier(0, 0.11, 0.35, 2);
-}
-@media (width>=768px) {
-  /* From Uiverse.io by boryanakrasteva */
-  .input-wrapper {
-    right: 68px;
-  }
+.clear-btn:hover {
+  background: #bbb;
+  color: #333;
 }
 </style>
