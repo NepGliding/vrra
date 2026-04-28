@@ -10,7 +10,7 @@
       :class="{ active: activeId === item.id }"
       @click="handleNavClick(item)"
     >
-      <component :is="activeId === item.id ? item.activeIcon : item.icon" />
+      <component :is="activeId === item.id && item.id === 'game' ? GameSVG2 : item.icon" />
       <span class="nav-label">{{ item.label }}</span>
     </button>
   </div>
@@ -19,22 +19,19 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount, watch, nextTick } from 'vue'
 import HardwareSVG from '@/assets/icon/HardwareSVG.vue'
-import HardwareSVG2 from '@/assets/icon/HardwareSVG2.vue'
 import SoftwareSVG from '@/assets/icon/SoftwareSVG.vue'
-import SoftwareSVG2 from '@/assets/icon/SoftwareSVG2.vue'
 import GameSVG from '@/assets/icon/GameSVG.vue'
 import GameSVG2 from '@/assets/icon/GameSVG2.vue'
 import WebsiteSVG from '@/assets/icon/WebsiteSVG.vue'
 import WebsiteSVG2 from '@/assets/icon/WebsiteSVG2.vue'
 import SystemSVG from '@/assets/icon/SystemSVG.vue'
-import SystemSVG2 from '@/assets/icon/SystemSVG2.vue'
 
 const navItems = [
-  { id: 'hardware', label: '硬件', icon: HardwareSVG, activeIcon: HardwareSVG2 },
-  { id: 'software', label: '软件', icon: SoftwareSVG, activeIcon: SoftwareSVG2 },
-  { id: 'game', label: '游戏', icon: GameSVG, activeIcon: GameSVG2 },
-  { id: 'website', label: '网站', icon: WebsiteSVG, activeIcon: WebsiteSVG2 },
-  { id: 'system', label: '系统', icon: SystemSVG, activeIcon: SystemSVG2 },
+  { id: 'hardware', label: '硬件', icon: HardwareSVG },
+  { id: 'software', label: '软件', icon: SoftwareSVG },
+  { id: 'game', label: '游戏', icon: GameSVG },
+  { id: 'website', label: '网站', icon: WebsiteSVG },
+  { id: 'system', label: '系统', icon: SystemSVG },
 ]
 
 // 当前高亮项 id

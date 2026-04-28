@@ -10,7 +10,7 @@
       :class="{ active: activeId === item.id }"
       @click="handleNavClick(item)"
     >
-      <component :is="activeId === item.id ? item.activeIcon : item.icon" />
+      <component :is="item.icon" />
       <span class="nav-label">{{ item.label }}</span>
     </button>
   </div>
@@ -19,22 +19,18 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount, watch, nextTick } from 'vue'
 import HardwareSVG from '@/assets/icon/HardwareSVG.vue'
-import HardwareSVG2 from '@/assets/icon/HardwareSVG2.vue'
 import SoftwareSVG from '@/assets/icon/SoftwareSVG.vue'
-import SoftwareSVG2 from '@/assets/icon/SoftwareSVG2.vue'
 import GameSVG from '@/assets/icon/GameSVG.vue'
 import GameSVG2 from '@/assets/icon/GameSVG2.vue'
 import WebsiteSVG from '@/assets/icon/WebsiteSVG.vue'
-import WebsiteSVG2 from '@/assets/icon/WebsiteSVG2.vue'
 import SystemSVG from '@/assets/icon/SystemSVG.vue'
-import SystemSVG2 from '@/assets/icon/SystemSVG2.vue'
 
 const navItems = [
-  { id: 'hardware', label: '硬件', icon: HardwareSVG, activeIcon: HardwareSVG2 },
-  { id: 'software', label: '软件', icon: SoftwareSVG, activeIcon: SoftwareSVG2 },
-  { id: 'game', label: '游戏', icon: GameSVG, activeIcon: GameSVG2 },
-  { id: 'website', label: '网站', icon: WebsiteSVG, activeIcon: WebsiteSVG2 },
-  { id: 'system', label: '系统', icon: SystemSVG, activeIcon: SystemSVG2 },
+  { id: 'hardware', label: '硬件', icon: HardwareSVG },
+  { id: 'software', label: '软件', icon: SoftwareSVG },
+  { id: 'game', label: '游戏', icon: GameSVG },
+  { id: 'website', label: '网站', icon: WebsiteSVG },
+  { id: 'system', label: '系统', icon: SystemSVG },
 ]
 
 // 当前高亮项 id
@@ -135,7 +131,6 @@ const handleNavClick = (item) => {
   cursor: pointer;
   padding: 8px 4px;
   width: 100%;
-  height: 58px;
   border-radius: 8px;
   transition: background-color 0.2s;
   z-index: 0; /* 让按钮内容在指示器上方 */
@@ -152,26 +147,18 @@ const handleNavClick = (item) => {
 
 /* 依然保留 active 类用于其他样式（如文字加粗），但指示器不再依赖它 */
 .main button.active .nav-label {
-  opacity: 0;
-  max-height: 0;
-  margin: 0;
-  padding: 0;
-  pointer-events: none;
+  color: var(--primary-color, var(--accent));
+  font-weight: 500;
+  background-color: var(--bg-hover);
 }
 
 .nav-label {
   font-size: 12px;
   color: var(--text-secondary);
   line-height: 1;
-  overflow: hidden;
-  opacity: 1;
-  max-height: 20px;
   transition:
     color 0.2s,
-    font-weight 0.2s,
-    opacity 0.3s ease,
-    max-height 0.3s ease,
-    margin 0.3s ease;
+    font-weight 0.2s;
 }
 
 .dark .nav-label {

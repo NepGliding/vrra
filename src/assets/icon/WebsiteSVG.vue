@@ -6,14 +6,14 @@
       width="40"
       height="32"
       rx="3"
-      stroke="#9a9a9a"
+      stroke="var(--text-secondary)"
       stroke-width="3"
       stroke-linejoin="bevel"
     />
     <path
       d="M4 11C4 9.34315 5.34315 8 7 8H41C42.6569 8 44 9.34315 44 11V20H4V11Z"
       fill="none"
-      stroke="#9a9a9a"
+      stroke="var(--text-secondary)"
       stroke-width="3"
     />
     <circle r="2" transform="matrix(-1.31134e-07 -1 -1 1.31134e-07 10 14)" fill="#9a9a9a" />
