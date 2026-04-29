@@ -37,7 +37,3 @@
     ></path>
   </svg>
 </template>
-
-<script setup></script>
-
-<style scoped></style>
