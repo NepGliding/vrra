@@ -65,7 +65,7 @@ const updateIndicator = () => {
   const activeButton = buttonRefs.value[activeIndex]
   if (activeButton) {
     const { offsetTop, offsetHeight } = activeButton
-    const indicatorHeight = offsetHeight * 0.5 // 高度为按钮高度的50%
+    const indicatorHeight = offsetHeight * 0.38 // 高度为按钮高度的50%
     const indicatorTop = offsetTop + (offsetHeight - indicatorHeight) / 2 // 垂直居中
     indicatorStyle.value = {
       top: `${indicatorTop}px`,
@@ -109,7 +109,7 @@ const handleNavClick = (item) => {
   position: relative;
   display: grid;
   grid-auto-flow: row;
-  gap: 8px;
+  gap: 4px;
   align-items: center;
   justify-items: center;
 }
@@ -140,9 +140,9 @@ const handleNavClick = (item) => {
   border: none;
   cursor: pointer;
   padding: 8px 4px;
-  width: 100%;
-  height: 58px;
-  border-radius: 2px;
+  width: 90%;
+  aspect-ratio: 1 / 1;
+  border-radius: 5px;
   transition: background-color 0.2s;
   z-index: 0;
 }
