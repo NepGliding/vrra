@@ -177,35 +177,7 @@ const handleNavClick = (item) => {
 .main button.active .nav-label {
   display: none;
 }
-
 /* 图标切换动画 */
-/* .icon-switch-enter-active {
-  transition:
-    opacity 0.2s ease,
-    transform 0.2s ease;
-}
-.icon-switch-enter-from {
-  opacity: 0;
-  transform: scale(0.8);
-} */
-
-/* .icon-switch-leave-active {
-  transition:
-    opacity 0.2s ease,
-    transform 0.2s ease;
-}
-.icon-switch-leave-to {
-  opacity: 0;
-  transform: scale(0.8);
-}
-
-.icon-switch-enter-active {
-  transition: opacity 0.2s ease;
-}
-.icon-switch-enter-from {
-  opacity: 0;
-} */
-
 .icon-switch-leave-active {
   transition:
     opacity 0.2s ease,
