@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <svg width="32" height="32" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
       d="M6.75 11.0625L19.6875 9.33752V21.4125H6.75V11.0625Z"
@@ -29,4 +29,22 @@
       stroke-linejoin="bevel"
     />
   </svg>
+</template> -->
+
+<template>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    width="28"
+    height="28"
+    fill="var(--accent)"
+  >
+    <path
+      d="M11.501 3V11.5H3.00098V3H11.501ZM11.501 21H3.00098V12.5H11.501V21ZM12.501 3H21.001V11.5H12.501V3ZM21.001 12.5V21H12.501V12.5H21.001Z"
+    ></path>
+  </svg>
 </template>
+
+<script setup></script>
+
+<style scoped></style>

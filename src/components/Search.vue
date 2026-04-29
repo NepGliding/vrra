@@ -83,7 +83,7 @@ const clearInput = () => {
   background-size: 80% 2px;
 }
 .search-input::placeholder {
-  color: var(--text-secondary);
+  color: var(--text-primary);
   font-size: 12px;
 }
 

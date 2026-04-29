@@ -10,7 +10,13 @@
       :class="{ active: activeId === item.id }"
       @click="handleNavClick(item)"
     >
-      <component :is="activeId === item.id ? item.activeIcon : item.icon" />
+      <Transition name="icon-switch" mode="out-in">
+        <!-- 必须加key，让Vue识别为不同元素从而触发过渡 -->
+        <component
+          :key="activeId === item.id ? 'active' : 'normal'"
+          :is="activeId === item.id ? item.activeIcon : item.icon"
+        />
+      </Transition>
       <span class="nav-label">{{ item.label }}</span>
     </button>
   </div>
@@ -100,31 +106,31 @@ const handleNavClick = (item) => {
 
 <style scoped>
 .main {
-  position: relative; /* 为指示器提供定位基准 */
+  position: relative;
   display: grid;
   grid-auto-flow: row;
-  gap: 12px;
+  gap: 8px;
   align-items: center;
   justify-items: center;
 }
 
-/* 独立的高亮指示器 —— 左边框蓝条 */
+/* 左边框蓝条 */
 .active-indicator {
   position: absolute;
   left: 0;
-  width: 4px; /* 左边框宽度 */
-  background-color: var(--accent); /* 蓝色高亮 */
+  width: 4px;
+  background-color: var(--accent);
   border-radius: 2px;
   transition:
     top 0.3s ease,
-    height 0.3s ease; /* 平滑滑动过渡 */
-  pointer-events: none; /* 让指示器不干扰点击 */
+    height 0.3s ease;
+  pointer-events: none;
   z-index: 1;
 }
 
-/* 按钮样式（背景透明，不能有单独的边框或背景高亮） */
+/* 按钮样式 */
 .main button {
-  position: relative; /* 确保按钮在指示器之上（z-index） */
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -136,9 +142,9 @@ const handleNavClick = (item) => {
   padding: 8px 4px;
   width: 100%;
   height: 58px;
-  border-radius: 8px;
+  border-radius: 2px;
   transition: background-color 0.2s;
-  z-index: 0; /* 让按钮内容在指示器上方 */
+  z-index: 0;
 }
 
 .main button:hover {
@@ -150,31 +156,71 @@ const handleNavClick = (item) => {
   background-color: var(--bg-nav-active);
 }
 
-/* 依然保留 active 类用于其他样式（如文字加粗），但指示器不再依赖它 */
-.main button.active .nav-label {
-  opacity: 0;
-  max-height: 0;
-  margin: 0;
-  padding: 0;
-  pointer-events: none;
-}
-
+/* 文字描述样式 - 绝对定位，不占用按钮布局 */
 .nav-label {
-  font-size: 12px;
-  color: var(--text-secondary);
-  line-height: 1;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 1px;
+  text-align: center;
+  font-size: 11px;
+  color: var(--text-secondary, #888);
+  line-height: 1.2;
+  pointer-events: none; /* 让文字不影响按钮点击 */
+  white-space: nowrap;
   overflow: hidden;
-  opacity: 1;
-  max-height: 20px;
-  transition:
-    color 0.2s,
-    font-weight 0.2s,
-    opacity 0.3s ease,
-    max-height 0.3s ease,
-    margin 0.3s ease;
+  text-overflow: ellipsis;
+  padding: 0 4px;
 }
 
-.dark .nav-label {
-  color: var(--text-secondary);
+/* 激活状态的按钮隐藏文字描述 */
+.main button.active .nav-label {
+  display: none;
+}
+
+/* 图标切换动画 */
+/* .icon-switch-enter-active {
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+.icon-switch-enter-from {
+  opacity: 0;
+  transform: scale(0.8);
+} */
+
+/* .icon-switch-leave-active {
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+.icon-switch-leave-to {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.icon-switch-enter-active {
+  transition: opacity 0.2s ease;
+}
+.icon-switch-enter-from {
+  opacity: 0;
+} */
+
+.icon-switch-leave-active {
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+.icon-switch-leave-to {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+/* 进入动画：仅淡入，保持正常尺寸 */
+.icon-switch-enter-active {
+  transition: opacity 0.2s ease;
+}
+.icon-switch-enter-from {
+  opacity: 0;
 }
 </style>
